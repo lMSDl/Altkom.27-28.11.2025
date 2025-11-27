@@ -8,7 +8,10 @@ namespace WebAppMVC.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            //widok jest szukany w katalogu o nazwie kontrolera (Home) w podkatalogu Views lub w katalogu wspó³dzielonym (Shared)
+            return View(); //zwraca widok o nazwie zgodnej z nazw¹ akcji (Index)
+
+            // return View("privacy"); //mo¿emy zwróciæ widok o innej nazwie - w tym przypadku privacy.cshtml
         }
 
         public IActionResult Privacy()
