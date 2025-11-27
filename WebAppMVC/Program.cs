@@ -1,11 +1,22 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.FileProviders;
+using Services.InMemory;
+using Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//rejestracja serwisu z ró¿nymi czasami ¿ycia
+
+//transient - nowa instancja za ka¿dym razem gdy jest wstrzykiwana
+//builder.Services.AddTransient<IProductsService, ProductsService>();
+
+//scoped - jedna instancja na czas trwania ¿¹dania HTTP
+//builder.Services.AddScoped<IProductsService, ProductsService>();
+
+//singleton - jedna instancja na ca³y czas dzia³ania aplikacji
+builder.Services.AddSingleton<IProductsService, ProductsService>();
 
 var app = builder.Build();
 
@@ -46,6 +57,15 @@ if (!app.Environment.IsDevelopment())
 };
 options.StaticFileOptions.OnPrepareResponse = x => x.Context.Response.Headers.Add("Cache-Control", "public,max-age=60000");
 app.UseFileServer(options);*/
+
+
+app.Use(async (context, next) =>
+{
+    var service = context.RequestServices.GetRequiredService<IProductsService>();
+    //coœ wa¿nego robimy z serwisem
+
+    await next(context);
+});
 
 app.UseHttpsRedirection();
 app.UseRouting();

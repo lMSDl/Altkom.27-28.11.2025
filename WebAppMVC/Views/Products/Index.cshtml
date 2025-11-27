@@ -1,0 +1,14 @@
+﻿@using Models
+@model IEnumerable<Product> //określamy typ modelu przekazywanego do widoku
+
+
+@foreach (var product in @Model) //uzyskanie dostępu do danych przekazanych jako parametr widoku
+{
+    <li>@product.Name - Cena: @product.Price.ToString("c")</li>
+} 
+
+
+@if(@Model.Sum(x => x.Price) > 30)
+{
+    @: Ale dzisiaj drogo....
+}
