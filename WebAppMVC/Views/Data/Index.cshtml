@@ -1,0 +1,35 @@
+﻿@{
+    Layout = null;
+}
+
+<p>ViewData name: @ViewData["name"]</p>
+<p>ViewBag age: @ViewBag.Age</p>
+
+ @if(TempData["message"] != null)
+{
+    <p>@TempData["message"]</p>
+    // TempData usuwa wartość po odczytaniu
+}
+else
+{
+    <p>No message in TempData</p>
+} 
+
+@* @if (TempData.Peek("message") != null)
+{
+    <p>@TempData.Peek("message")</p>
+    // Peek nie usuwa wartości po odczytaniu
+}
+else
+{
+    <p>Peek: No message in TempData</p>
+} *@
+
+@if (TempData["TempDataKeep"] != null)
+{
+    <p>@TempData["TempDataKeep"]</p>
+}
+else
+{
+    <p>TempDataKeep: No message in TempData</p>
+}
