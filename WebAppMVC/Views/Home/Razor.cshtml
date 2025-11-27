@@ -1,0 +1,62 @@
+﻿<li>Simple text</li>
+<li>Simple text</li>
+<br>
+<li>Simple text</li>
+<p>Simple text</p>
+
+<!-- (at) włącza Razor -->
+<!-- @@ stosowana by "anulować" działanie pojedynczej i wyświetlić ją jako tekst-->
+@@this.GetType().FullName
+<br>
+@* to komentarz Razor i nie zostanie on wyświetlony w źródle strony *@
+@this.GetType().FullName
+
+<br>
+<!-- (at) musi być na początku wyrażenia aby przełączyć nas na Razor -->
+abc@mail.com
+
+<p>2 + 4 = @(2 + 4) </p>
+
+<p>Dzisiejsza data to: @DateTime.UtcNow.ToShortDateString()</>
+<p>Od 2000 roku mięło @(DateTime.Now.Year - 2000) lat</> @* używamy nawiasów ponieważ spacja przerywa Razor*@
+
+@* tworzymy blok Razor, w którym możemy zadeklarować zmienne*@
+@{
+    var number1 = 100;
+    var number2 = 2000;
+}
+
+<p>@number1 - @number2 = @(number1 - number2)</p>
+
+
+@* W bloku Razor możemy też tworzyć fukcje *@
+@{
+    void Show(string param)
+    {
+        for(int i = 0; i < 3; i++)
+        {   
+            <p>@param</p>
+        }
+    }
+
+    Show("text");
+}
+
+@for (int i = 0; i < 3; i++)
+{
+    <p>@number1</p>
+}
+
+@* Aby wywołać jakąć funkcję musimy też użyć bloku. Nie da się z samą @ *@
+@{Show("text");}
+
+@if(DateTime.Now.Second % 2 == 0)
+{
+    // <text></text> pozwala na wyświetlenie tekstu bez użycia @:
+    <text>Even</text>
+}
+else
+{
+    // @: wyświetlenie jako zwykły tekst z bloku Razor
+    @:Odd
+}
