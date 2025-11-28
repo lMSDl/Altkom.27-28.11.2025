@@ -36,21 +36,14 @@
     <table class="table">
         <thead>
             <tr>
-               @*  <th>@Html.DisplayName(nameof(Entity.Id))</th> *@
-                <th>@Html.DisplayNameFor(model => model.Id)</th>
-                <th>@Html.DisplayName(StringLocalizer[nameof(Models.User.Name)])</th>
-                @* <th>@Html.Label(ViewLocalizer[nameof(Models.User.Password)].Value)</th> *@
-                <th>@Html.Label(ViewLocalizer[nameof(Models.User.Password)].Value)</th>
+               @await Html.PartialAsync("_UserHeader", new User())
             </tr>
         </thead>
         <tbody>
             @foreach (var user in Model)
             {
                 <tr>
-                    <td>@Html.DisplayFor(_ => user.Id)</td>
-                    <td>@user.Name</td>
-                    @* <td>@Html.Password("*", user.Password, new { @readonly = "readonly", @style = "border:none; outline:none;" })</td> *@
-                    <td>@HtmlLocalizer["Italic", user.Password]</td>
+                    @await Html.PartialAsync("_UserBody", user)
                     <td>@Html.ActionLink("Delete", "Delete", "Users", new {user.Id})</td>
                 </tr>
             }

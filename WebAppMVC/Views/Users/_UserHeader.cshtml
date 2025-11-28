@@ -1,0 +1,15 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Localization
+@using WebAppMVC.Resources
+@model User
+
+@inject IStringLocalizer<Users> StringLocalizer
+@inject IHtmlLocalizer<Users> HtmlLocalizer
+@inject IViewLocalizer ViewLocalizer
+
+
+@*  <th>@Html.DisplayName(nameof(Entity.Id))</th> *@
+<th>@Html.DisplayNameFor(model => model.Id)</th>
+<th>@Html.DisplayName(StringLocalizer[nameof(Models.User.Name)])</th>
+@* <th>@Html.Label(ViewLocalizer[nameof(Models.User.Password)].Value)</th> *@
+<th>@Html.Label(ViewLocalizer[nameof(Models.User.Password)].Value)</th>

@@ -11,16 +11,12 @@
     <table class="table">
         <thead>
             <tr>
-                <th>@Html.DisplayNameFor(model => model.Id)</th>
-                <th>@Html.DisplayName(StringLocalizer[nameof(Models.User.Name)])</th>
-                <th>@Html.Label(ViewLocalizer[nameof(Models.User.Password)].Value)</th>
+                <partial name="_UserHeader" model="new User()" />
             </tr>
         </thead>
         <tbody>
                 <tr>
-                    <td>@Html.DisplayFor(x => x.Id)</td>
-                    <td>@Model.Name</td>
-                    <td>@HtmlLocalizer["Italic", @Model.Password]</td>
+                    <partial name="_UserBody" model="@Model" />
                 </tr>
         </tbody>
     </table>
