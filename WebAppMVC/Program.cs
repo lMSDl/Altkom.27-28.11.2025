@@ -4,12 +4,18 @@ using Services.Bogus;
 using Services.Bogus.Fakers;
 using Services.InMemory;
 using Services.Interfaces;
+using WebAppMVC.Resources;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews()
+    .AddViewLocalization()
+    .AddDataAnnotationsLocalization(
+        x => x.DataAnnotationLocalizerProvider = (type, factory) =>
+            factory.Create(typeof(SharedResources))
+    );
 
 //rejestracja serwisu z ró¿nymi czasami ¿ycia
 
@@ -27,6 +33,17 @@ builder.Services.AddSingleton(new Product { Name = "", Price = 44 });
 //builder.Services.AddSingleton<IService<User>, BogusService<User>>();
 builder.Services.AddSingleton<IService<User>, UsersBogusService>();
 builder.Services.AddTransient<Faker<User>, UserFaker>();
+
+builder.Services.AddLocalization(x => x.ResourcesPath = "Resources");
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    var supportedCultures = new[] { "en", "pl" }
+        .Select(c => new System.Globalization.CultureInfo(c))
+        .ToList();
+    options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("en");
+    options.SupportedCultures = supportedCultures;
+    options.SupportedUICultures = supportedCultures;
+});
 
 var app = builder.Build();
 
@@ -78,6 +95,8 @@ app.Use(async (context, next) =>
 });
 
 app.UseHttpsRedirection();
+app.UseRequestLocalization();
+
 app.UseRouting();
 
 app.UseAuthorization();

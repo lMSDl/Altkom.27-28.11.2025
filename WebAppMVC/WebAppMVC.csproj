@@ -16,4 +16,37 @@
     <ProjectReference Include="..\Services.Interfaces\Services.Interfaces.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Resources\Resources\Users.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Users.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Resources\SharedResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SharedResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Views\Users\Index.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Index.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Resources\Users.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Users.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Resources\SharedResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SharedResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Users\Index.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Index.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

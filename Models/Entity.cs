@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.ComponentModel;
 
 namespace Models
 {
     public abstract class Entity
     {
+        [DisplayName("Identifier")]
         public int Id { get; set; }
     }
 }
