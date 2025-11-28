@@ -21,8 +21,10 @@ namespace WebAppMVC.Controllers
             return View(users);
         }
 
-        //włączenie walidacji AntiFOrgeryToken dla pojedynczej metody
+        //włączenie walidacji AntiForgeryToken dla pojedynczej metody
         //[AutoValidateAntiforgeryToken]
+        //wyłączenie walidacji AntiForgeryToken dla pojedynczej metody
+        //[IgnoreAntiforgeryToken]
         [HttpPost]
         public async Task<IActionResult> Search(string? input)
         {
