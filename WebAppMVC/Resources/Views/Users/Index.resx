@@ -120,4 +120,7 @@
   <data name="Password" xml:space="preserve">
     <value>Pass</value>
   </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
 </root>

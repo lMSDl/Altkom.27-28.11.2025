@@ -12,6 +12,18 @@
 @* ViewLocalizer - Specjalny lokalizator przeznaczony do widoków Razor. Zwykle działa jak IHtmlLocalizer (zwraca treść HTML-compat), ale szuka zasobów bazując na lokalizacji widoku (ścieżka pliku widoku) — ułatwia trzymanie zasobów obok plików widoków. *@
 
 <div>
+
+    @using(Html.BeginForm("search", "users"))
+    {
+        @* @Html.AntiForgeryToken() - ręczne włączenie tokena CSRF. Domyślnie włączony przy korzystaniu z HTML helpera*@
+        @ViewLocalizer["Search"] @Html.TextBox("input") <br>
+        <input type="submit" value="OK" class="btn" />
+    }
+
+</div>
+
+
+<div>
     <table class="table">
         <thead>
             <tr>
