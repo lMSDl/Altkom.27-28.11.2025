@@ -44,5 +44,17 @@ namespace Services.InMemory
             var entity = _entities.SingleOrDefault(e => e.Id == id);
             return Task.FromResult(entity);
         }
+
+        public Task UpdateAsync(int id, T entity)
+        {
+            var existingEntity = _entities.SingleOrDefault(e => e.Id == id);
+            if (existingEntity != null)
+            {
+                _entities.Remove(existingEntity);
+                entity.Id = id;
+                _entities.Add(entity);
+            }
+            return Task.CompletedTask;
+        }
     }
 }
