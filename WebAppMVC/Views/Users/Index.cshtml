@@ -2,9 +2,14 @@
 @using Microsoft.Extensions.Localization
 @using WebAppMVC.Resources
 @model IEnumerable<User>
+
 @inject IStringLocalizer<Users> StringLocalizer
 @inject IHtmlLocalizer<Users> HtmlLocalizer
 @inject IViewLocalizer ViewLocalizer
+
+@* StringLocalizer -  Lokalizator dla zwykłych tekstów (bez HTML). Zwraca LocalizedString (ciąg tekstowy). Razor enkoduje jego wartość przy renderowaniu — bezpieczne dla danych tekstowych*@
+@* HtmlLocalizer - Lokalizator przeznaczony do treści, które zawierają HTML. Zwraca typ reprezentujący nie-enkodowany HTML (LocalizedHtmlString/IHtmlContent), więc Razor wypisze go bez dodatkowego HTML-escapingu. *@
+@* ViewLocalizer - Specjalny lokalizator przeznaczony do widoków Razor. Zwykle działa jak IHtmlLocalizer (zwraca treść HTML-compat), ale szuka zasobów bazując na lokalizacji widoku (ścieżka pliku widoku) — ułatwia trzymanie zasobów obok plików widoków. *@
 
 <div>
     <table class="table">
