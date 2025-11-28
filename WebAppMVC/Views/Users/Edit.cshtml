@@ -8,12 +8,16 @@
                 @Html.LabelFor(model => model.Name)
                 <br />
                 @Html.EditorFor(model => model.Name)
+                <br />
+                @Html.ValidationMessageFor(x => x.Name)
             </div>
 
             <div class="from-group">
                 @Html.LabelFor(model => model.Password)
                 <br />
                 @Html.EditorFor(model => model.Password)
+                <br />
+                @Html.ValidationMessageFor(x => x.Password)
             </div>
 
             @Html.HiddenFor(x => x.Id)
@@ -23,3 +27,13 @@
         </form>
     </div>
 </div>
+
+<div>
+    @Html.ValidationSummary()
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

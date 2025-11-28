@@ -61,6 +61,24 @@ namespace WebAppMVC.Resources.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password must contain small, large letter, number and be 8 chars long.
+        /// </summary>
+        public static string ComplexPassword {
+            get {
+                return ResourceManager.GetString("ComplexPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Field {0} is required.
+        /// </summary>
+        public static string FieldRequered {
+            get {
+                return ResourceManager.GetString("FieldRequered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ID.
         /// </summary>
         public static string Identifier {

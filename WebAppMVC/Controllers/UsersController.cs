@@ -79,6 +79,18 @@ namespace WebAppMVC.Controllers
         //public async Task<IActionResult> AddOrEditUser(User user) //przykład mapowania całego modelu
         public async Task<IActionResult> AddOrEditUser(int id, [Bind("Name", "Password")] User user) //przykład użycia atrybutu Bind do ograniczenia mapowania tylko do wybranych właściwości modelu
         {
+            var duplicate = (await _service.GetAllAsync()).SingleOrDefault(x => x.Name == user.Name);
+            if(duplicate != null && (id == 0 || duplicate.Id != id))
+            {
+                ModelState.AddModelError("Name", "User with the same name already exists.");
+            }
+
+
+            if(!ModelState.IsValid)
+            {
+                return View("Edit", user);
+            }
+
             if (id == 0)
             {
                 await _service.Create(user);
