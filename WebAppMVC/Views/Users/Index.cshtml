@@ -51,6 +51,7 @@
                     <td>@user.Name</td>
                     @* <td>@Html.Password("*", user.Password, new { @readonly = "readonly", @style = "border:none; outline:none;" })</td> *@
                     <td>@HtmlLocalizer["Italic", user.Password]</td>
+                    <td>@Html.ActionLink("Delete", "Delete", "Users", new {user.Id})</td>
                 </tr>
             }
         </tbody>

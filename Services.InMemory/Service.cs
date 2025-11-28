@@ -24,6 +24,16 @@ namespace Services.InMemory
             return Task.FromResult(entity.Id);
         }
 
+        public Task DeleteAsync(int id)
+        {
+            var entity = _entities.SingleOrDefault(e => e.Id == id);
+            if (entity != null)
+            {
+                _entities.Remove(entity);
+            }
+            return Task.CompletedTask;
+        }
+
         public Task<IEnumerable<T>> GetAllAsync()
         {
             return Task.FromResult(_entities.AsEnumerable());

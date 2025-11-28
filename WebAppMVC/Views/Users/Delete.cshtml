@@ -1,0 +1,38 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Localization
+@using WebAppMVC.Resources
+@model User
+
+@inject IStringLocalizer<Users> StringLocalizer
+@inject IHtmlLocalizer<Users> HtmlLocalizer
+@inject IViewLocalizer ViewLocalizer
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Id)</th>
+                <th>@Html.DisplayName(StringLocalizer[nameof(Models.User.Name)])</th>
+                <th>@Html.Label(ViewLocalizer[nameof(Models.User.Password)].Value)</th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td>@Html.DisplayFor(x => x.Id)</td>
+                    <td>@Model.Name</td>
+                    <td>@HtmlLocalizer["Italic", @Model.Password]</td>
+                </tr>
+        </tbody>
+    </table>
+</div>
+
+<div>
+    @using(@Html.BeginForm("DeleteUser", "Users"))
+    {
+        @Html.HiddenFor(x => x.Id);
+        @* <input type="hidden" asp-for"@Model.Id"> *@
+
+        <input type="submit" class="btn btn-danger" value="Delete"/>
+        <a asp-action="Index" class="btn">Cancel</a>
+    }
+</div>
