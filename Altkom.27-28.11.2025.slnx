@@ -4,4 +4,5 @@
   <Project Path="Services.InMemory/Services.InMemory.csproj" />
   <Project Path="Services.Interfaces/Services.Interfaces.csproj" />
   <Project Path="WebAppMVC/WebAppMVC.csproj" />
+  <Project Path="WebAppRazor/WebAppRazor.csproj" />
 </Solution>

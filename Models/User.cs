@@ -12,5 +12,8 @@ namespace Models
         [Required]
         [RegularExpression("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$", ErrorMessage = "ComplexPassword")]
         public string? Password { get; set; }
+
+        public int SomeInt { get; set; }
+        public bool SomeBool { get; set; }
     }
 }
