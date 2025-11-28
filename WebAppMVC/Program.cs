@@ -1,3 +1,7 @@
+using Bogus;
+using Models;
+using Services.Bogus;
+using Services.Bogus.Fakers;
 using Services.InMemory;
 using Services.Interfaces;
 
@@ -17,6 +21,12 @@ builder.Services.AddControllersWithViews();
 
 //singleton - jedna instancja na ca³y czas dzia³ania aplikacji
 builder.Services.AddSingleton<IProductsService, ProductsService>();
+
+builder.Services.AddSingleton(new Product { Name = "", Price = 44 });
+
+//builder.Services.AddSingleton<IService<User>, BogusService<User>>();
+builder.Services.AddSingleton<IService<User>, UsersBogusService>();
+builder.Services.AddTransient<Faker<User>, UserFaker>();
 
 var app = builder.Build();
 

@@ -1,0 +1,23 @@
+﻿@model IEnumerable<User>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayName(nameof(Entity.Id))</th>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <th>@Html.Label(nameof(Models.User.Password))</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(_ => user.Id)</td>
+                    <td>@user.Name</td>
+                    <td>@Html.Password("*", user.Password, new { @readonly = "readonly", @style = "border:none; outline:none;" })</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
