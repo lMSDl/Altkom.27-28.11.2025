@@ -1,0 +1,38 @@
+﻿@page
+@model WebAppRazor.Pages.Users.IndexModel
+
+
+<div>
+ 
+    @using(Html.BeginForm(FormMethod.Get))
+    {
+        @:Search @Html.TextBox("input")
+        <br>
+        <input type="submit" value="OK" class="btn" />
+    }
+ 
+</div>
+
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+               @await Html.PartialAsync("_UserHeader", new User())
+            </tr>
+        </thead>
+        <tbody>
+            @* @foreach (var user in await Model.Service.GetAllAsync()) *@
+            @foreach (var user in Model.Users)
+            {
+                <tr>
+                    @await Html.PartialAsync("_UserBody", user)
+                    <td><a asp-page=".\AddOrEdit\Edit" asp-route-id="@user.Id">Edit</a></td>
+                    <td><a asp-page="./Delete" asp-route-userId="@user.Id">Delete</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+                    <td><a asp-page=".\AddOrEdit\Add">Edit</a></td>
+</div>

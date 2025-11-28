@@ -1,7 +1,16 @@
+using Bogus;
+using Models;
+using Services.Bogus;
+using Services.Bogus.Fakers;
+using Services.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+builder.Services.AddSingleton<IService<User>, UsersBogusService>();
+builder.Services.AddTransient<Faker<User>, UserFaker>();
 
 var app = builder.Build();
 

@@ -1,0 +1,28 @@
+﻿@page
+@model WebAppRazor.Pages.Users.DeleteModel
+
+<div>
+    <table class="table">
+        <thead>
+            <partial name="_UserHeader" model="new User()" />
+        </thead>
+        <tbody>
+            <tr>
+                <partial name="_UserBody" for=@Model.SelectedUser />
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div>
+
+    @using(Html.BeginForm(FormMethod.Post))
+    {
+        <input type="hidden" asp-for="@Model.SelectedUser.Id" />
+        
+        <input type="submit" class="btn btn-danger" value="Delete" />
+        <a asp-page="./Index" class="btn">Cancel</a>
+    }
+
+</div>
